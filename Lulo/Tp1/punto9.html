@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+</head>
+<body>
+
+    <form action="login.php" method="POST" id="form">
+
+        <label for="">Nombre</label>
+        <input type="text" name="nombre" id="">
+
+        <label for="">Apellido</label>
+        <input type="text" name="apellido" id="">
+
+        <label for="">Edad</label>
+        <input type="number" name="edad" id="">
+        <br>
+        <label for="">Genero:</label>
+        
+        <input type="radio" name="genero" value="masculino" <label for="">Masculino</label>
+        <input type="radio" name="genero" value="femenino" <label for="">Femenino</label>
+        <input type="radio" name="genero" value="indefinido" <label for="">No definido</label>
+
+        <br>
+        
+        <label for="">Nacionalidad</label>
+        <select name="nacionalidad" id="">
+            <option value=""></option>
+            <option value="Argentina">argentina</option>
+            <option value="Brasil">brasil</option>
+            <option value="Colombia">colombia</option>
+            <option value="Chile">chile</option>
+            <option value="Peru">peru</option>
+        </select>
+       <br>
+
+       <label for="">Intereses:</label>
+        
+        <input type="checkbox" name="intereses[]" value="Deportes" <label for="">Deportes</label>
+        
+        <input type="checkbox" name="intereses[]" value="VideoJuegos" <label for="">VideoJuegos</label>
+        
+        <input type="checkbox" name="intereses[]" value="Cine" <label for="">Cine</label>
+        
+        <input type="checkbox" name="intereses[]" value="Politica" <label for="">Politica</label>
+       <br>
+
+        <input type="submit" name="submit" value="Enviar">
+
+    </form>
+
+    <div id="container">
+
+    </div>
+    
+    <script src="js/ajax.js"></script>
+</body>
+</html>
+
+
