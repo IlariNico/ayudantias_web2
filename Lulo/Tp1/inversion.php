@@ -26,10 +26,15 @@ if(isset($_GET["inversion"])){
 
     echo "<td>$inversion</td>";
     
-
+    /*
+    $meses = [
+        "enero", "febrero", "marzo", "abril", "mayo", "junio",
+        "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"
+    ];*/ 
+   
     for($i=1; $i<12; $i++){
         $interes_mensual = ($inversion * $interes)/100;
-        $inversion += $interes_mensual; // INVERSION = INVERSION + INTERES MENSUAL
+        $inversion += $interes_mensual; 
         echo "<td> $inversion </td>";
         
     }

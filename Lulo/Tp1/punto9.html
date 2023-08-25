@@ -38,15 +38,30 @@
         </select>
        <br>
 
+    
+       <!--
+        /*
+       
+       
+           <?php $intereses=['gaming','deportes','ajedrez','lectura'];?>
        <label for="">Intereses:</label>
+       <label for="">Intereses</label>
+       <?php foreach($intereses as $interes) {?>
+       <input type="checkbox" name="intereses[]" value="<?php echo $interes?>"><?php echo $interes; ?>
+       <?php } ?>
+            <script src="Extra/js/ajax.js"></script>
+             
+       -->
+       <label for="">Intereses</label>
+       
+       <input type="checkbox" name="intereses[]" value="Deportes" <label for="">Deportes</label>
         
-        <input type="checkbox" name="intereses[]" value="Deportes" <label for="">Deportes</label>
-        
-        <input type="checkbox" name="intereses[]" value="VideoJuegos" <label for="">VideoJuegos</label>
-        
-        <input type="checkbox" name="intereses[]" value="Cine" <label for="">Cine</label>
-        
-        <input type="checkbox" name="intereses[]" value="Politica" <label for="">Politica</label>
+       <input type="checkbox" name="intereses[]" value="VideoJuegos" <label for="">VideoJuegos</label>
+       
+       <input type="checkbox" name="intereses[]" value="Cine" <label for="">Cine</label>
+       
+       <input type="checkbox" name="intereses[]" value="Politica" <label for="">Politica</label>
+       
        <br>
 
         <input type="submit" name="submit" value="Enviar">
@@ -57,7 +72,7 @@
 
     </div>
     
-    <script src="Extra/js/ajax.js"></script>
+    
 </body>
 </html>
 

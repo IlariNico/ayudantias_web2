@@ -2,14 +2,25 @@
 
 <?php
 
-    if($_POST["genero"]== "masculino"){
+  /*  if(($_POST["genero"]== "masculino")||($_POST["genero"]== "femenino")||($_POST["genero"]== "indefinido")){
         $genero = "masculino";
-    }
-    else if($_POST["genero"]== "femenino"){
         $genero = "femenino";
-    }
-    else if($_POST["genero"]== "indefinido"){
         $genero = "indefinido";
+    } */
+
+    $genero = $_POST["genero"];
+    var_dump($genero);
+
+    switch($genero){
+        case "masculino":
+            echo "masculino";
+            break;
+        case "femenino":
+            echo "femenino";
+            break;
+        case "indefindo":
+            echo "indefinido";
+            break;
     }
     
     $nombre = $_POST ["nombre"];
