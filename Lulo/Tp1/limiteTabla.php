@@ -30,7 +30,10 @@
             for ($multiplicador=1; $multiplicador <=$limite ; $multiplicador++) {
                 echo "<tr> <td> $multiplicador </td>"; 
                 for ($multiplicando=1; $multiplicando <=$limite ; $multiplicando++) { 
-                    echo "<td>" . $multiplicador*$multiplicando . "</td>";
+                    $resultado =$multiplicador*$multiplicando;
+                    $color = ($i == 1 || $j == 1 || $i == $j) ? "background-color: yellow;" : "";
+                    echo "<td style='$color'>" . $resultado . "</td>";
+                    
                 }
             echo "</tr>";
         
