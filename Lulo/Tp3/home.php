@@ -46,14 +46,15 @@ function getDeudor($id){
 
 function createDeudor(){
     GLOBAL $db;
-    $query="INSERT INTO deudas( deudor, cuota, cuota_capital, fecha_pago) VALUES (?,?,?,?)";
+    $query="INSERT INTO pagos(deudor, cuota, cuota_capital, fecha_pago) VALUES (?,?,?,?)";
     $sentence= $db->prepare($query);
-    $sentence-> execute([$_POST['deudor'],$_POST['cuota'],$_POST['cuota_capital']], $_POST['fecha_pago']);
+    $sentence-> execute([$_POST['Deudor'],$_POST['cuota'],$_POST['cuota_capital'], $_POST['fecha_pago']]);
     header("Location: ". BASE_URL ."home");
 }
 
 function deleteDeudor($id){
     GLOBAL $db;
+    
     $query="DELETE FROM pagos WHERE id=?";
     $sentence= $db->prepare($query);
     $sentence-> execute([$id]);
@@ -92,7 +93,7 @@ echo "<table>
     </thead>
     <tbody>";
 
-    echo "<form method='POST' action='crearDeudor'>
+    echo "<form method='POST' action='crear'>
         <label>Deudor</label>
         <input type='text' name='Deudor' '></input>
         <label>cuota</label>
@@ -122,7 +123,7 @@ foreach($pays as $i){
 
    
 }
-ShowHome();
+
 
 
 ?>

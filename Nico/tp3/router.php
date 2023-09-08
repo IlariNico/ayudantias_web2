@@ -1,6 +1,6 @@
 <?php
 
-require_once 'home.php';
+require_once 'acciones.php';
 
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');

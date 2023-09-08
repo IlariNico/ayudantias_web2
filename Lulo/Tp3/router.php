@@ -1,6 +1,6 @@
 <?php
 
-require_once 'deudas.php';
+require_once 'home.php';
 
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
@@ -26,7 +26,7 @@ switch ($params[0]) {
     case 'crear':
         createDeudor();
         break;
-    case 'elimiar':
+    case 'eliminar':
         deleteDeudor($params[1]);
         break;    
       
