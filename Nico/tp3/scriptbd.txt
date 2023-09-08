@@ -1,0 +1,15 @@
+CREATE OR REPLACE TABLE carrera( id INT PRIMARY KEY, nombre VARCHAR(30) NOT NULL );
+
+CREATE OR REPLACE TABLE materia( id INT PRIMARY KEY, profesor VARCHAR(20), nombre VARCHAR(20), id_carrera INT, FOREIGN KEY (id_carrera) REFERENCES carrera(id) );
+
+
+//si hay que modificar 
+ALTER TABLE materia
+ADD CONSTRAINT fk_carrera
+FOREIGN KEY (id_carrera)
+REFERENCES carrera(id);
+
+
+//insert carrera
+
+INSERT INTO `carrera`( `nombre`) VALUES ('TUDAI');
