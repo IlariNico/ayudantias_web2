@@ -114,7 +114,7 @@ echo "<table>
                 <td>" . $i->fecha_pago . "</td>
                 <td>
                 <a href='eliminar/" . $i->id . "'>Eliminar</a>
-                <a href='modificar/" . $i->id . "'>Modificar</a>
+                <a href='editar/" . $i->id . "'>Modificar</a>
                 </td>
             </tr>";
  
