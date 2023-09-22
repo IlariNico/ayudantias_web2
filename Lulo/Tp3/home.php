@@ -5,11 +5,9 @@
 <div class="container">
 
 <?php
-$db = new PDO('mysql:host=localhost;'.'dbname=db_deudas;charset=utf8', 'root', '');
-
-function getPagos($db){
+function getPagos(){
     //1. abrir la conexion con PDO
-   // $db = new PDO('mysql:host=localhost;' . 'dbname=db_deudas;charset=utf8', 'root', '' );
+   $db = new PDO('mysql:host=localhost;' . 'dbname=db_deudas;charset=utf8', 'root', '' );
 
     //2. ejecutar consulta SQL() (2 Subpasos: prepare y execute)
     // prepare seria escribir la consulta y execute la ejecuta
@@ -36,7 +34,7 @@ function getPagos($db){
 
 
 function getDeudor($id){
-    $db = new PDO('mysql:host=localhost;' . 'dbname=db_deudas;charset=utf8', 'root', '' );
+     $db = new PDO('mysql:host=localhost;' . 'dbname=db_deudas;charset=utf8', 'root', '' );
      $query = $db->prepare('SELECT * FROM pagos WHERE id=?' );
      $query->execute([$id]);
      $pay = $query->fetch(PDO::FETCH_OBJ);
@@ -45,7 +43,7 @@ function getDeudor($id){
 
 
 function createDeudor(){
-    GLOBAL $db;
+    $db = new PDO('mysql:host=localhost;'.'dbname=db_deudas;charset=utf8', 'root', '');
     $query="INSERT INTO pagos(deudor, cuota, cuota_capital, fecha_pago) VALUES (?,?,?,?)";
     $sentence= $db->prepare($query);
     $sentence-> execute([$_POST['Deudor'],$_POST['cuota'],$_POST['cuota_capital'], $_POST['fecha_pago']]);
@@ -53,17 +51,18 @@ function createDeudor(){
 }
 
 function deleteDeudor($id){
-    GLOBAL $db;
-    
+    $db = new PDO('mysql:host=localhost;'.'dbname=db_deudas;charset=utf8', 'root', '');
     $query="DELETE FROM pagos WHERE id=?";
     $sentence= $db->prepare($query);
     $sentence-> execute([$id]);
     header("Location: ". BASE_URL ."home");
 }
 
+
+
 function showhome(){
-    global $db;
-    $pays=getPagos($db);
+
+    $pays=getPagos();
     echo "<style>
     table {
         border-collapse: collapse;
@@ -106,22 +105,84 @@ echo "<table>
         </form>";
         
 
-foreach($pays as $i){
-    echo "<tr>
-    <td>" . $i->id . "</td>
-    <td>" . $i->deudor . "</td>
-    <td>" . $i->cuota . "</td>
-    <td>" . $i->cuota_capital . "</td>
-    <td>" . $i->fecha_pago . "</td>
-    <td>
-    <a href='eliminar/" . $i->id . "'>Eliminar</a>
-       
-    </td>
-</tr>";
-
-    } 
+    foreach($pays as $i){
+            echo "<tr>
+                <td>" . $i->id . "</td>
+                <td>" . $i->deudor . "</td>
+                <td>" . $i->cuota . "</td>
+                <td>" . $i->cuota_capital . "</td>
+                <td>" . $i->fecha_pago . "</td>
+                <td>
+                <a href='eliminar/" . $i->id . "'>Eliminar</a>
+                <a href='modificar/" . $i->id . "'>Modificar</a>
+                </td>
+            </tr>";
+ 
+     } 
 
    
+}
+
+function modifyDeudor($id) {
+    // Obtener el deudor por ID
+    $deudor = getDeudor($id);
+
+    // Comprobar si el deudor existe
+    if (!$deudor) {
+        // Puedes mostrar un mensaje de error o redirigir a una página de error
+        echo "El deudor no existe.";
+        return;
+    }
+
+    // Verificar si se envió un formulario POST
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // Obtener los datos del formulario
+        $nuevoDeudor = $_POST['Deudor'];
+        $nuevaCuota = $_POST['Cuota'];
+        $nuevaCuotaCapital = $_POST['Cuota_capital'];
+        $nuevaFechaPago = $_POST['Fecha_pago'];
+
+        // Realizar validaciones si es necesario
+
+        // Llamar a la función para editar el deudor en la base de datos
+        editDeudor($id, $nuevoDeudor, $nuevaCuota, $nuevaCuotaCapital, $nuevaFechaPago);
+
+    }
+}
+
+function showEditForm($id){
+   
+    $deudor = getDeudor($id);
+
+    var_dump($deudor);
+    echo"copate y mostrame el form php";
+    
+    echo "<form method='POST' action='editar/".$deudor->id."'>
+
+            <label>Deudor</label>
+            <input type='text' name='Deudor' value='" . $deudor->deudor . "'></input>
+
+            <label>Cuota</label>
+            <input type='text' name='Cuota' value='" . $deudor->cuota . "'></input>
+
+            <label>Cuota_capital</label>
+            <input type='text' name='Cuota_capital' value='" . $deudor->cuota_capital . "'></input>
+
+            <label>Fecha de pago</label>
+            <input type='text' name='Fecha_pago' value='" . $deudor->fecha_pago . "'></input>
+
+        
+            <input type='submit' name='editar' value='Editar'></input>  
+          </form>";
+       
+}
+
+function editDeudor($id,$deudor, $cuota, $cuota_capital, $fecha_pago){
+    $db = new PDO('mysql:host=localhost;'.'dbname=db_deudas;charset=utf8', 'root', '');
+    $query="UPDATE `pagos` SET `deudor`=?,`cuota`=?,`cuota_capital`=?, `fecha_pago`=?, WHERE id=?";
+    $sentence= $db->prepare($query);
+    $sentence-> execute([$_POST['deudor'],$_POST['cuota'],$_POST['cuota_capital'],$_POST['fecha_pago'],$id]);
+    header('Location: ' . BASE_URL  );
 }
 
 

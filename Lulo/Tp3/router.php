@@ -20,12 +20,26 @@ switch ($params[0]) {
     case 'home':
         showHome();
         break;
+
     case 'deudor':
         getDeudor($params[1]);
-        break;    
+        break;   
+
     case 'crear':
         createDeudor();
         break;
+        
+    case 'editar':
+            // Verifica si se está procesando el formulario de edición
+            if (!empty($_POST['editar'])) {
+                modifyDeudor($params[1]);
+            } else {
+                // Muestra el formulario de edición
+                showEditForm($params[1]);
+            }
+            break;
+    
+
     case 'eliminar':
         deleteDeudor($params[1]);
         break;    
