@@ -1,0 +1,11 @@
+<link rel="stylesheet" type="text/css" href="estilos.css">
+<h1><?=$titulo?></h1>
+<ul>
+<?php
+    foreach($fruits as $fruta){?>
+    <?php if($fruta=="bananas") {?>
+        <li class="amarillo"><?=$fruta?></li>
+        <?php } else{?>
+    <li><?=strtoupper(substr($fruta,0,20))?></li>
+    <?php }}?>
+</ul>
